@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Reddit Activity Analyzer",
+    "version": "1.0",
+    "description": "Fetches public Reddit activity and recommends subreddits.",
+    "permissions": ["storage", "activeTab", "scripting"],
+    "host_permissions": ["https://oauth.reddit.com/*"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icon.png",
+            "48": "icon.png",
+            "128": "icon.png"
+        }
+    },
+    "oauth2": {
+      "client_id": "wPt0LzlocnpVzTP965cFlQ",
+      "scopes": ["identity", "read"],
+      "redirect_uris": ["https://bndnmfgacfmmeledhcaddcijkimmeell.chromiumapp.org/"]
+    }
+  }
+  
+
+
+
+
