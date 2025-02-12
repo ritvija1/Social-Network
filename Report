@@ -1,0 +1,57 @@
+**# Reddit Public Activity Analyzer & Subreddit Recommendation Engine**
+
+## Introduction
+The Reddit Public Activity Analyzer & Subreddit Recommendation Engine is a browser extension designed to fetch a user's **public Reddit activity** (posts, comments, upvotes) and generate **personalized subreddit recommendations**. The goal is to help users discover new subreddits that align with their interests.
+
+## Data Collection & Processing
+### 1 Fetching Public Activity
+- The extension utilizes "Reddit’s OAuth API" to authenticate users and fetch their **public activity**.
+- The following endpoints are used:
+  -  Fetches user posts.
+  -  Fetches user comments.
+  -  Fetches upvoted posts.
+- The API requests are made using fetch() with authentication headers containing the access token.
+
+### 2 Data Storage & Preprocessing
+- The retrieved data is stored in Chrome’s local storage.
+- Text preprocessing is applied to extract relevant keywords and themes.
+- Stopwords removal is performed to clean up unnecessary words (e.g., "the", "is", "and").
+
+##  Activity Analysis Logic
+### 1 Identifying User Interests
+- TF-IDF (Term Frequency-Inverse Document Frequency):
+  - Extracts the most relevant keywords from posts and comments.
+  - Helps identify frequently discussed topics by the user.
+- Subreddit Frequency Analysis:
+  - Counts how often the user interacts with different subreddits.
+  - Assigns weights based on engagement levels (more posts/comments → higher importance).
+
+### 2 Ranking Interests Using PageRank Approach
+- A graph-based ranking method is applied to determine the most important keywords.
+- Each subreddit is treated as a node, and interactions form edges.
+- Higher-ranked subreddits influence recommendations more.
+
+## Subreddit Recommendation Algorithm
+### 1 Finding Similar Subreddits
+- The system leverages Reddit’s API to find related subreddits.
+- The most frequently interacted subreddits are used as input queries to find similar communities.
+
+### 2 Filtering & Ranking Recommendations
+- Recommendations are ranked based on content similarity, using:
+  - Jaccard Similarity: Measures overlap between user interests and subreddit topics.
+  - Cosine Similarity: Analyzes the similarity of the user’s discussion topics with recommended subreddits.
+  - Popularity & Activity Metrics: Subreddits with high engagement and active discussions are prioritized.
+
+### 3 Final Recommendation List
+- A Top-N ranking is generated, displaying the best-matching subreddits.
+- Users can click on recommendations to visit the subreddit directly.
+
+## Privacy & Compliance
+- The extension only accesses publicly available data.
+- OAuth tokens are used temporarily and not saved persistently.
+
+## Conclusion
+The extension provides an intelligent way to analyze a user’s Reddit activity and recommend new subreddits tailored to their interests. By leveraging NLP techniques and similarity algorithms, the system ensures **relevant, high-quality recommendations** while maintaining user privacy.
+
+---
+
